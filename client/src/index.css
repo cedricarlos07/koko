@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 349.5 100% 50%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .card-3d {
+    @apply rounded-2xl bg-white p-6 border border-gray-100;
+    transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .card-3d:hover {
+    transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 
+      0 5px 15px rgba(0,0,0,0.05),
+      0 15px 35px rgba(229, 19, 60, 0.1);
+  }
+  
+  .gradient-red {
+    background: linear-gradient(135deg, #E5133C 0%, #FF6B81 100%);
+  }
+  
+  .gradient-purple {
+    background: linear-gradient(135deg, #E5133C 0%, #8A2BE2 100%);
+  }
+  
+  .gradient-blue {
+    background: linear-gradient(135deg, #1E90FF 0%, #64B5F6 100%);
+  }
+  
+  .stat-card-icon {
+    @apply flex items-center justify-center rounded-xl text-white h-12 w-12;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-card-badge {
+    @apply text-xs font-medium rounded-full py-1 px-2.5 flex items-center;
+  }
+  
+  .stat-card-badge.positive {
+    @apply bg-green-100 text-green-700;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-animation {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(229, 19, 60, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(229, 19, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 19, 60, 0); }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}

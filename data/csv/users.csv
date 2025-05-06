@@ -1,0 +1,6 @@
+username,password,email,firstName,lastName,role,telegramUsername,points
+john.doe,password123,john.doe@example.com,John,Doe,student,@johndoe,50
+jane.smith,password123,jane.smith@example.com,Jane,Smith,student,@janesmith,75
+prof.english,password123,prof.english@example.com,Professor,English,professor,@profenglish,100
+coach.english,password123,coach.english@example.com,Coach,English,coach,@coachenglish,90
+admin.user,password123,admin.user@example.com,Admin,User,admin,@adminuser,200

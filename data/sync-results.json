@@ -1,0 +1,29 @@
+[
+  {
+    "id": 84274705994,
+    "course": "Français Débutant",
+    "day": "monday",
+    "time": "10:00",
+    "teacher": "Jean Dupont",
+    "joinUrl": "https://us02web.zoom.us/j/84274705994",
+    "status": "success"
+  },
+  {
+    "id": 86388613635,
+    "course": "Français Intermédiaire",
+    "day": "wednesday",
+    "time": "14:30",
+    "teacher": "Marie Martin",
+    "joinUrl": "https://us02web.zoom.us/j/86388613635",
+    "status": "success"
+  },
+  {
+    "id": 89699695969,
+    "course": "Français Avancé",
+    "day": "friday",
+    "time": "18:00",
+    "teacher": "Pierre Durand",
+    "joinUrl": "https://us02web.zoom.us/j/89699695969",
+    "status": "success"
+  }
+]

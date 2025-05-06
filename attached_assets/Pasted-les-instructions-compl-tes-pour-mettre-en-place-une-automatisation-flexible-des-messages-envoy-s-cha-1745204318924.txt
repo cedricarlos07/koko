@@ -1,0 +1,104 @@
+les instructions complètes pour mettre en place une automatisation flexible des messages envoyés chaque matin dans les groupes Telegram, incluant :
+
+🗓️ Une exécution automatique quotidienne
+
+✍️ Une possibilité d’éditer ou désactiver les automatisations via une interface admin
+
+🤖 Une synchronisation avec Zoom, Telegram, la base SQLite et le fichier de planning
+
+✅ FONCTIONNALITÉ : ENVOI MATINAL AUTOMATISÉ DES MESSAGES DE COURS + CONFIGURATION MODIFIABLE
+🎯 Objectif
+Envoyer chaque matin à 06h GMT les messages de rappel pour les cours du jour dans leurs groupes Telegram dédiés, avec lien Zoom auto.
+
+Donner la possibilité à l’admin (ou au professeur) de :
+
+activer/désactiver les messages
+
+modifier un cours, une heure, un groupe ou un message
+
+reprogrammer manuellement l’envoi
+
+🧩 STRUCTURE DES COMPOSANTS
+
+Élément	Description
+🗂️ Fichier CSV Fix Schedule	Planning de la semaine par classe
+🧠 Base SQLite classes.db	Contient les infos parsées du planning
+🤖 Bot Telegram connecté	Peut envoyer des messages dans chaque groupe
+🔗 Zoom API	Génère automatiquement les liens de réunion
+🖥️ Interface Admin	Permet de modifier les automatisations
+🧵 ÉTAPES DU FONCTIONNEMENT
+🕕 1. Tâche CRON quotidienne à 6h GMT
+Utiliser node-cron pour exécuter chaque jour à 6h GMT :
+
+bash
+Copy
+Edit
+0 6 * * * // (GMT)
+📊 2. Récupération des cours du jour
+Le système lit les cours de la journée depuis la base de données (ex : mardi → mardi)
+
+Pour chaque cours :
+
+Heure, professeur, groupe Telegram, etc.
+
+Création automatique de réunion Zoom si non existante
+
+📬 3. Préparation du message Telegram
+Format stylisé (template avec émojis) :
+
+markdown
+Copy
+Edit
+📚 *Cours du jour : [Nom du Cours]*
+👨‍🏫 Prof : [Professeur]
+🕒 Heure : [Heure GMT]
+🔗 [👉 Lien Zoom ici](#)
+
+Bonne journée et soyez ponctuel·les ! 🎯
+📤 4. Envoi automatique dans le groupe associé
+L’identifiant du groupe est lu depuis la table groupes
+
+Le message est envoyé par le bot
+
+🖥️ 5. Interface de gestion (Admin Panel)
+Fonctions disponibles :
+✅ Voir les cours du jour
+
+✏️ Modifier un cours (heure, groupe, Zoom, etc.)
+
+🔕 Désactiver un envoi prévu
+
+🔄 Reprogrammer un message
+
+💬 Prévisualiser le message à envoyer
+
+Exemple de champs à modifier dans l’interface :
+
+Champ	Action possible
+Groupe Telegram	Changer ou ajouter manuellement
+Heure de début	Modifier
+Lien Zoom	Forcer un lien perso
+Statut du message	Activé / Désactivé
+🧪 Logs de chaque envoi
+Créer une table logs_messages :
+
+date
+
+heure
+
+cours
+
+message envoyé
+
+statut (succès, erreur, annulé)
+
+id_groupe
+
+lien Zoom utilisé
+
+🧠 Possibilité d’ajouter un test manuel
+Dans l’admin, bouton : "Tester un message maintenant"
+
+Permet d’envoyer un exemple dans un groupe test
+
+Permet de prévisualiser un message pour demain

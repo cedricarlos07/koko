@@ -1,0 +1,142 @@
+Tu es une IA experte en développement backend full-stack. Ta mission est de créer toute la structure backend d’une plateforme nommée KODJO ENGLISH BOT destinée à gérer et automatiser des cours d’anglais en ligne.
+Le frontend a déjà été développé en React.js. Tu dois produire le backend en Node.js (Express) avec SQLite comme base de données. Les intégrations clés incluent Telegram Bot API et Zoom API.
+
+⸻
+
+STACK TECHNIQUE :
+	•	Backend : Node.js avec Express.js
+	•	Base de données : SQLite (légère, locale, facile à maintenir)
+	•	Authentification : JWT ou sessions, selon la logique que tu construis
+	•	Intégrations externes :
+	•	Telegram Bot (envoi de messages dans des groupes et récupération d’activités)
+	•	Zoom API (création de réunions, suivi de participation)
+
+⸻
+
+MODULES À DÉVELOPPER (FONCTIONNALITÉS MAJEURES)
+
+⸻
+
+1. GESTION DES UTILISATEURS
+	•	Création, modification, suppression de comptes (Admin, Étudiant, Coach, Prof)
+	•	Authentification sécurisée
+	•	Profils utilisateurs (infos, avatar, rôles, dernière connexion)
+	•	Attribution de rôles et permissions
+	•	Suivi d’activité
+
+⸻
+
+2. GESTION DES COURS
+	•	CRUD des cours avec organisation par niveau (BBG, ABG, IG, etc.)
+	•	Numérotation des sessions (1-86)
+	•	Attribution de coachs/instructeurs
+	•	Planification automatique des cours basée sur le fichier CSV “FIX SCHEDULE”
+	•	Support des fuseaux horaires (GMT)
+
+⸻
+
+3. INTÉGRATION TELEGRAM (MAJEURE)
+	•	Configuration du bot
+	•	Récupération de la liste des membres par groupe (compte les étudiants)
+	•	Suivi de l’activité dans les groupes Telegram :
+	•	Messages postés par chaque utilisateur (nombre, type)
+	•	Classement des participants
+	•	Transfert automatique des publications de la chaîne Telegram vers les groupes
+	•	Envoi automatique de rappels stylisés avec templates et emojis
+	•	Templates personnalisables (exemples ci-dessous)
+
+⸻
+
+TEMPLATES AVEC EMOJIS (PAS DE HTML)
+	•	Rappel de cours :
+
+📚 *Rappel de cours !*
+
+👨‍🏫 *Cours* : [Nom du cours]  
+🧑‍🏫 *Professeur* : [Nom du prof]  
+🕒 *Heure* : [Heure GMT]  
+📅 *Date* : [Date]  
+🔗 *Lien Zoom* : [Lien Zoom]
+
+⏰ Rappel : Commence dans [x] minutes. Sois à l'heure !
+
+
+	•	Annonce importante :
+
+🚀 *Annonce importante !*
+
+[Contenu de l’annonce depuis la chaîne Telegram]
+
+📢 Partagez dans vos groupes respectifs !
+
+
+	•	Badge :
+
+🏅 *Félicitations [Prénom] !*  
+Tu viens de recevoir le badge *[Nom du Badge]* pour ta participation exceptionnelle cette semaine !  
+Continue comme ça !
+
+
+
+⸻
+
+4. INTÉGRATION ZOOM
+	•	Création automatique de réunions via API Zoom
+	•	Attribution de lien par cours
+	•	Envoi automatique du lien Zoom dans le groupe Telegram concerné
+	•	Suivi de présence sur Zoom (nom, durée, timestamp)
+	•	Calcul automatique des présences
+	•	Attribution de points pour présence
+
+⸻
+
+5. CLASSEMENT & BADGES
+	•	Attribution de points pour :
+	•	Présence aux cours (Zoom)
+	•	Participation dans le groupe Telegram (nombre de messages)
+	•	Génération de classements (quotidien, hebdo, mensuel)
+	•	Attribution automatique de badges selon règles prédéfinies :
+	•	Ex : “Top Participant”, “Présence parfaite”, etc.
+	•	Historique des badges et points
+
+⸻
+
+6. AUTOMATISATION & RÈGLES INTELLIGENTES
+	•	Planification de rappels Telegram avant les cours
+	•	Récupération automatique du planning (CSV dynamique)
+	•	Déclencheurs : heure, date, présence Zoom, activité Telegram
+	•	Historique des automatisations
+
+⸻
+
+7. STATISTIQUES
+	•	Étudiants actifs sur une période
+	•	Activité Telegram : nombre de messages, médias, réactions
+	•	Présence sur Zoom (effectif, durée)
+	•	Performance par étudiant
+	•	Dashboards avec agrégation simple
+
+⸻
+
+8. IMPORTATION DE PLANNING AUTOMATIQUE
+	•	Lire le fichier Kodjo English - Classes Schedules - Dynamic Schedule.csv :
+	•	Feuille FIX SCHEDULE utilisée pour générer les sessions automatiquement
+	•	Chaque ligne contient : nom du cours, jour, heure, professeur, lien du groupe Telegram
+	•	Le backend planifie chaque réunion et envoie le message automatiquement dans le bon groupe
+
+⸻
+
+MODULES BONUS :
+	•	Logs et audit : journaliser toutes les actions critiques
+	•	Gestion des erreurs : messages clairs, fallback Telegram si Zoom échoue
+	•	Interface admin via API : endpoints RESTful documentés
+	•	Sauvegarde automatique : base SQLite exportée régulièrement
+
+⸻
+
+EXEMPLES D’ACTIONS À AUTOMATISER
+	•	Tous les lundis à 9h GMT :
+→ Créer réunion Zoom pour le cours “BBG 1”
+→ Envoyer un message dans le groupe Telegram associé avec le lien + prof + emojis
+	•	Tous les dimanches 18h :
+...
