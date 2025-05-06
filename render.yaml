@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: kodjo-english-app
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ZOOM_CLIENT_ID
+        sync: false
+      - key: ZOOM_CLIENT_SECRET
+        sync: false
+      - key: ZOOM_ACCOUNT_ID
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_TYPE
+        value: sqlite
+      - key: DATABASE_PATH
+        value: ./data/kodjo-english-v2.db
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

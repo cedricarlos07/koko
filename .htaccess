@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Si le fichier ou répertoire demandé existe, servir directement
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rediriger toutes les requêtes vers le proxy Node.js
+RewriteRule ^ http://localhost:5007%{REQUEST_URI} [P,L]
+
+# En cas d'erreur de proxy, afficher une page d'erreur personnalisée
+ErrorDocument 503 /error.html
